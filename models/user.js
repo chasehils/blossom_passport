@@ -16,6 +16,11 @@ const userSchema = new Schema({
   password: {
     type: String,
     required: true
+  },
+  subscriptionLevel: {
+    type: String,
+    enum: ['Blossom', 'Botanical', 'Floral'],
+    default: 'Blossom'
   }
 }, {
   timestamps: true,
