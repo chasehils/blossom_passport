@@ -1,31 +1,33 @@
 import { useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import { getUser } from '../../utilities/users-service';
 import './App.css';
 import AuthPage from '../AuthPage/AuthPage';
-import NewOrderPage from '../NewOrderPage/NewOrderPage';
-import OrderHistoryPage from '../OrderHistoryPage/OrderHistoryPage';
+import HomePage from '../HomePage/HomePage';
 import NavBar from '../../components/NavBar/NavBar';
-import SubscriptionLevelPage from '../SubscriptionLevelPage/SubscriptionLevelPage'
 
 export default function App() {
   const [user, setUser] = useState(getUser());
+  const navigate = useNavigate;
+
+  // Function to handle successful login
+  const handleLogin = () => {
+    setUser(getUser());
+    navigate('/');
+  };
 
   return (
     <main className="App">
-      { user ?
-          <>
-            <NavBar user={user} setUser={setUser} />
-            <Routes>
-              {/* Route components in here */}
-              <Route path="/orders/new" element={<NewOrderPage />} />
-              <Route path="/orders" element={<OrderHistoryPage />} />
-              <Route path="/subscription-level" element={<SubscriptionLevelPage />} />
-            </Routes>
-          </>
-          :
-          <AuthPage setUser={setUser} />
-      }
+      {user ? (
+        <>
+          <NavBar user={user} setUser={setUser} />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+          </Routes>
+        </>
+      ) : (
+        <AuthPage onLogin={handleLogin} />
+      )}
     </main>
   );
 }

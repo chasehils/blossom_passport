@@ -1,18 +1,24 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function SubscriptionLevelPage() {
-  const [selectedLevel, setSelectedLevel] = useState('');
+  const [selectedLevel] = useState('');
+  const navigate = useNavigate();
 
   function handleSelectLevel(level) {
-    setSelectedLevel(level);
+    navigate('/flowers', { state: { selectedLevel: level } })
   }
 
   function handleNext() {
     // Perform any necessary actions before proceeding to the next step
     // For example, you can submit the selected level to the server or update user data
     console.log('Selected level:', selectedLevel);
-    // Redirect or navigate to the next page
-    // Example: history.push('/confirmation');
+    
+    // Redirect or navigate to the next page (FlowerPage)
+    navigate.push({
+      pathname: '/flowers',
+      state: { selectedLevel: selectedLevel }
+    });
   }
 
   return (
