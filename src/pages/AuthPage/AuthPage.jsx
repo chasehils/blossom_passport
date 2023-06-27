@@ -1,23 +1,19 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import SignUpForm from '../../components/SignUpForm/SignUpForm';
+import './AuthPage.css';
 import LoginForm from '../../components/LoginForm/LoginForm';
+import SignUpForm from '../../components/SignUpForm/SignUpForm';
 
-export default function AuthPage({ onLogin }) {
-  const [showSignUp, setShowSignUp] = useState(false);
-  const navigate = useNavigate();
 
-  // Function to handle successful login
- 
+export default function AuthPage({ setUser }) {
+  const [showLogin, setShowLogin] = useState(true);
+
   return (
-    <main>
-      <h1>AuthPage</h1>
-      <button onClick={() => setShowSignUp(!showSignUp)}>{showSignUp ? 'Log In' : 'Sign Up'}</button>
-      {showSignUp ? (
-        <SignUpForm setUser={onLogin} />
-      ) : (
-        <LoginForm setUser={onLogin} />
-      )}
+    <main className="AuthPage">
+      <div>
+        <Logo />
+        <h3 onClick={() => setShowLogin(!showLogin)}>{showLogin ? 'SIGN UP' : 'LOG IN'}</h3>
+      </div>
+      {showLogin ? <LoginForm setUser={setUser} /> : <SignUpForm setUser={setUser} />}
     </main>
   );
 }
