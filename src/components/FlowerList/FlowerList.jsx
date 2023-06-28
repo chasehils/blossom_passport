@@ -1,16 +1,16 @@
-import './MenuList.css';
-import MenuListItem from '../MenuListItem/MenuListItem';
+// import './MenuList.css';
+import FlowerListItem from '../FlowerListItem/FlowerListItem';
 
-export default function FlowerList({ flowerItems, handleAddToOrder }) {
-  const items = menuItems.map(item =>
+export default function FlowerList({ flowerItems = [], handleAddToOrder }) {
+  const items = flowerItems.map(item =>
     <FlowerListItem
       key={item._id}
-      menuItem={item}
+      flowerItem={item}
       handleAddToOrder={handleAddToOrder}
     />
   );
   return (
-    <main className="MenuList">
+    <main className="FlowerList">
       {items}
     </main>
   );
