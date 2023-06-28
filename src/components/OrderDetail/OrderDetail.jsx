@@ -1,4 +1,4 @@
-// import './OrderDetail.css';
+import './OrderDetail.css';
 import LineItem from '../LineItem/LineItem';
 
 // Used to display the details of any order, including the cart (unpaid order)

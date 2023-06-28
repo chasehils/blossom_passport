@@ -1,4 +1,4 @@
-// import './FlowerListItem.css';
+import './FlowerListItem.css';
 
 export default function FlowerListItem({ flowerItem, handleAddToOrder }) {
   return (

@@ -1,4 +1,4 @@
-// import './MenuList.css';
+import './FlowerList.css';
 import FlowerListItem from '../FlowerListItem/FlowerListItem';
 
 export default function FlowerList({ flowerItems = [], handleAddToOrder }) {
