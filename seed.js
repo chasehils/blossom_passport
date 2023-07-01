@@ -33,7 +33,7 @@ const Item = require('./models/item');
     {name: 'Candia Tulips', emoji: '🌯', category: categories[2], price: 14.95},
     {name: 'Tulipa Greigii', emoji: '🌯', category: categories[2], price: 14.95},
     {name: 'European Michaelmas Daisy', emoji: '🍕', category: categories[3], price: 16.95},
-    {name: 'Chrysanthemum', emoji: '🍝', category: categories[3], price: 14.95},
+    {name: 'African Daisy', emoji: '🍝', category: categories[3], price: 14.95},
     {name: 'Mexican Daisy', emoji: '🍞', category: categories[3], price: 12.95},
     {name: 'Henry\'s Lily', emoji: '🍟', category: categories[4], price: 12.95},
     {name: 'Stargazer Lily', emoji: '🥗', category: categories[4], price: 15.95},

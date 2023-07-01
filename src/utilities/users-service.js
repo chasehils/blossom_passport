@@ -36,8 +36,61 @@ export function getToken() {
   }
   return token;
 }
-
+console.log('Token')
 export function getUser() {
   const token = getToken();
   return token ? JSON.parse(atob(token.split('.')[1])).user : null;
 }
+console.log('console before getUserProfile')
+
+export async function getUserProfile(userId) {
+  try {
+    console.log('getUserProfile')
+    const response = await usersAPI.getUserProfile(userId); // Make the API request to retrieve the user's profile
+    const profileData = await response.json();
+    console.log('after profileData', profileData);
+    return profileData;
+  } catch (error) {
+    throw new Error('Failed to retrieve user profile');
+  }
+}
+console.log('before update user profile')
+
+export async function updateUserProfile(userId, updatedProfile) {
+  try {
+    console.log('Updating user profile')
+    const response = await usersAPI.updateUserProfile(userId, updatedProfile); // Make the API request to update the user's profile
+    const updatedData = await response.json();
+    return updatedData;
+  } catch (error) {
+    throw new Error('Failed to update user profile');
+  }
+}
+
+// async function addAddress(userId, addressData) {
+//   try {
+//     const response = await fetch(`/api/users/${userId}/account`, {
+//       method: 'PUT',
+//       headers: {
+//         'Content-Type': 'application/json',
+//         Authorization: `Bearer ${getToken()}`,
+//       },
+//       body: JSON.stringify(addressData),
+//     });
+//     console.log('before response')
+//     if (!response.ok) {
+//       throw new Error('Failed to update user address');
+//     }
+    
+//     console.log('response', responseData)
+//     const responseData = await response.json(); // Parse the response data
+
+//     return responseData // Return the user data
+//   } catch (error) {
+//     console.error('Failed to add address:', error);
+//     throw error;
+//   }
+// }
+
+
+// export {addAddress}
