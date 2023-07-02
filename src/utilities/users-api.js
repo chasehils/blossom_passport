@@ -14,13 +14,13 @@ export async function getUserProfile(userId) {
 }
 
 export async function updateUserProfile(userId, updatedProfile) {
-  return sendRequest(`${BASE_URL}/${userId}/profile`, 'PUT', updatedProfile);
+  return sendRequest(`${BASE_URL}/${userId}/users-profile`, 'PUT', updatedProfile);
 }
 
 export async function addAddress(userId, address) {
-  return sendRequest(`${BASE_URL}/${userId}/account`, 'PUT', { address, userId });
+  return sendRequest(`${BASE_URL}/${userId}/addresses`, 'PUT', { address, userId });
 }
 
 export async function deleteAddress(userId) {
-  return sendRequest(`${BASE_URL}/${userId}/account`, 'DELETE');
+  return sendRequest(`${BASE_URL}/${userId}/addresses`, 'DELETE');
 }

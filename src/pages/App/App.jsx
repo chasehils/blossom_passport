@@ -8,6 +8,9 @@ import NewOrderPage from '../NewOrderPage/NewOrderPage';
 import OrderHistoryPage from '../OrderHistoryPage/OrderHistoryPage';
 import NavBar from '../../components/NavBar/NavBar';
 import MyAccount from '../../components/MyAccount/MyAccount';
+import ListAddressComponent from '../../components/ListAddress/ListAddress';
+import CreateAddressComponent from '../../components/CreateAddress/CreateAddress';
+// import UsersProfile from '../../components/UsersProfile/UsersProfile';
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -43,6 +46,10 @@ export default function App() {
         <NavBar user={user} setUser={setUser} />
           <Routes>
             {/* client-side route that renders the component instance if the path matches the url in the address bar */}
+            <Route path="/addresses" element={<ListAddressComponent />} />
+            <Route path="/add-address" element={<CreateAddressComponent />} />
+            <Route path="/edit-address/:id" element={<CreateAddressComponent />} />
+            {/* <Route path="/user-profile" element={<UsersProfile />} /> */}
             <Route path="/orders/new" element={<NewOrderPage user={user} setUser={setUser} />} />
             <Route path="/orders" element={<OrderHistoryPage />} />
             <Route path="/:account"element={<MyAccount user={user} setUser={setUser} updateUserProfile={handleUpdateProfile} />} />

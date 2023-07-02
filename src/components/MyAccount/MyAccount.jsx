@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { getUserProfile, updateUserProfile } from '../../utilities/users-service';
 import * as usersService from '../../utilities/users-service';
 import { addAddress, deleteAddress } from '../../utilities/users-api';
+import { Link } from 'react-router-dom';
 
 
 export default function MyAccount(props) {
@@ -53,7 +54,7 @@ export default function MyAccount(props) {
   };
 
   // Handle profile update
-  const handleUpdateProfile = async () => {
+  const handleUpdate = async () => {
     try {
       // Prepare the updated profile data
       const updatedProfile = {
@@ -67,11 +68,6 @@ export default function MyAccount(props) {
     } catch (error) {
       console.error('Failed to update user profile:', error);
     }
-  };
-
-  const handleEditProfile = () => {
-    setIsEditing(true);
-    setUpdatedAddress(address);
   };
 
   const handleAddressChange = (e) => {
@@ -95,7 +91,7 @@ export default function MyAccount(props) {
         address,
         subscriptionLevel,
       }
-      const updatedData = await updateUserProfile(props.user._id, updatedProfile)
+      const updatedData = await updateUserProfile(props.user._id,)
       console.log('User profile update successfully', updatedData)
     } catch (error) {
       console.error('Failed to update user profile', error)
@@ -104,43 +100,15 @@ export default function MyAccount(props) {
 
   return (
     <div>
-      <h2>Hello, {props.user.name}</h2>
-      <div>
-        <p>My Address: {address}</p>
-        <p>Subscription Level: {subscriptionLevel}</p>
-      </div>
-      {!isEditing && (
-        <div>
-          <button type="button" onClick={handleEditProfile}>
-            Update Profile
-          </button>
-        </div>
-      )}
-      {isEditing && (
-        <div>
-          <div>
-            <input type="text" value={updatedAddress} onChange={handleAddressChange} />
-            <button type="button" onClick={handleSaveAddress}>
-              Save Address
-            </button>
-            <button type="button" onClick={handleDeleteAddress}>
-              Delete Address
-            </button>
-          </div>
-          <div>
-            <label>Subscription Level:</label>
-            <select value={subscriptionLevel} onChange={handleSubscriptionLevelChange}>
-              <option value="">Choose Subscription Level</option>
-              <option value="Blossom">Blossom</option>
-              <option value="Floral">Floral</option>
-              <option value="Botanical">Botanical</option>
-            </select>
-          </div>
-          <button type="button" onClick={handleUpdateProfile}>
-            Save Changes
-          </button>
-        </div>
-      )}
-    </div>
+    <h2>Hello, {props.user.name}</h2>
+    <ul>
+      <li>
+        <Link to="/addresses">Addresses</Link>
+      </li>
+      <li>
+        <Link to="/user-profile">User Profile</Link>
+      </li>
+    </ul>
+  </div>
   );
 }

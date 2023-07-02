@@ -13,9 +13,9 @@ router.post('/login', usersCtrl.login);
 // GET /api/users/check-token
 router.get('/check-token', ensureLoggedIn, usersCtrl.checkToken);
 // Update user profile
-router.put('/:userId/profile', ensureLoggedIn, updateProfile);
+router.put('/:userId/account', ensureLoggedIn, updateProfile);
 // PUT add address
-router.put('/:userId/account', usersCtrl.addAddress);
+router.put('/:userId/addresses', usersCtrl.addAddress);
 http://localhost:3001/api/users/649de807d2bf8a9030514a37/account
 
 
