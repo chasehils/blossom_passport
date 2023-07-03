@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const addressCtrl = require('../controllers/AddressService');
+const addressCtrl = require('../../controllers/AddressService');
 
 // All paths start with '/addresses'
 

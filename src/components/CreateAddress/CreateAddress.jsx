@@ -13,7 +13,7 @@ class CreateAddressComponent extends Component {
     super(props);
 
     this.state = {
-      id: this.props.match.params.id,
+      // id: this.props.match.params.id,
       street: '',
       city: '',
       state: '',
@@ -29,19 +29,19 @@ class CreateAddressComponent extends Component {
     this.getTitle = this.getTitle.bind(this);
   }
 
-  componentDidMount() {
-    if (this.state.id !== '_add') {
-      getAddressById(this.state.id).then((res) => {
-        let address = res.data;
-        this.setState({
-          street: address.street,
-          city: address.city,
-          state: address.state,
-          zip: address.zip,
-        });
-      });
-    }
-  }
+  // componentDidMount() {
+  //   if (this.state.id !== '_add') {
+  //     getAddressById(this.state.id).then((res) => {
+  //       let address = res.data;
+  //       this.setState({
+  //         street: address.street,
+  //         city: address.city,
+  //         state: address.state,
+  //         zip: address.zip,
+  //       });
+  //     });
+  //   }
+  // }
   
 
   saveOrUpdateAddress(e) {
@@ -53,15 +53,15 @@ class CreateAddressComponent extends Component {
       zip: this.state.zip,
     };
 
-    if (this.state.id === '_add') {
-      AddressService.createAddress(address).then((res) => {
-        this.props.history.push('/addresses');
-      });
-    } else {
-      AddressService.updateAddress(address, this.state.id).then((res) => {
-        this.props.history.push('/addresses');
-      });
-    }
+    // if (this.state.id === '_add') {
+    //   AddressService.createAddress(address).then((res) => {
+    //     this.props.history.push('/addresses');
+    //   });
+    // } else {
+    //   AddressService.updateAddress(address, this.state.id).then((res) => {
+    //     this.props.history.push('/addresses');
+    //   });
+    // }
   }
 
   changeStreetHandler(event) {
@@ -94,12 +94,12 @@ class CreateAddressComponent extends Component {
 
   render() {
     return (
+     
       <div>
         <br />
         <div className="container">
           <div className="row">
             <div className="card col-md-6 offset-md-3 offset-md-3">
-              {this.getTitle()}
               <div className="card-body">
                 <form>
                   <div className="form-group">
@@ -162,7 +162,7 @@ class CreateAddressComponent extends Component {
           </div>
         </div>
       </div>
-    );
+      )
   }
 }
 

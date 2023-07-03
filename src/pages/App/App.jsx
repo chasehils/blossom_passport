@@ -22,13 +22,16 @@ export default function App() {
 
   useEffect(() => {
     // Fetch user profile data after the user is logged in
-    const userId = '...'; // Get the user ID from the JWT or wherever it's stored
-    getUserProfile(userId)
+    setUser(getUser()); // Get the user ID from the JWT or wherever it's stored
+    if (user) {
+      getUserProfile(user._id)
       .then((profileData) => setUser(profileData))
       .catch((error) => {
         // Handle error
         console.error(error);
-      });
+      })
+    }
+    
   }, []);
 
   const handleUpdateProfile = (updatedProfile) => {

@@ -3,13 +3,13 @@ import { getAddresses, deleteAddress } from '../../utilities/AddressService';
 import { useNavigate } from 'react-router-dom';
 
 const ListAddressComponent = () => {
-  const [addresses, setAddresses] = useState([]);
+  const [addresses, setAddresses] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
     getAddresses()
       .then((res) => {
-        console.log(res.data);
+        console.log('res in list address', res);
         setAddresses(res.data);
       })
       .catch((error) => {
