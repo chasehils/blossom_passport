@@ -1,27 +1,26 @@
+import axios from 'axios';
+const BASE_URL = 'http://localhost:3001/api/users';
 
-import sendRequest from './send-request';
-const BASE_URL = 'http://localhost:3001/api/addresses';
-
-
-
-  export async function getAddresses() {
-    return sendRequest(BASE_URL, 'GET');
+class AddressService {
+  getAddresses() {
+    return axios.get(BASE_URL);
   }
 
-  export async function createAddress(address) {
-    return sendRequest(BASE_URL, 'POST', address);
+  createAddress(address) {
+    return axios.post(BASE_URL, address);
   }
 
-  export async function getAddressById(addressId) {
-    return sendRequest(BASE_URL + '/' + addressId, 'GET');
+  getAddressById(addressId) {
+    return axios.get(BASE_URL + '/' + addressId);
   }
 
-  export async function updateAddress(address, addressId) {
-    return sendRequest(BASE_URL + '/' + addressId,  'PUT', address);
+  updateAddress(address, addressId) {
+    return axios.put(BASE_URL + '/' + addressId, address);
   }
 
-  export async function deleteAddress(addressId) {
-    return sendRequest(BASE_URL + '/' + addressId, 'DELETE');
+  deleteAddress(addressId) {
+    return axios.delete(BASE_URL + '/' + addressId);
   }
+}
 
-
+export default new AddressService();

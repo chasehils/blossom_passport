@@ -7,7 +7,6 @@ export default function NavBar() {
    <Link to="orders/new">New Order</Link>
    <Link to="orders">Order History</Link>
    <Link to="account">My Account</Link>
-   <Link to="flower-list">See the Flowers</Link>
     </div>
   )
 }
