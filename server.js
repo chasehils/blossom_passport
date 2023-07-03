@@ -14,7 +14,7 @@ const app = express();
 app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
-
+app.use('/Flower_Pictures', express.static('src/Flower_Pictures'));
 // Configure both serve-favicon & static middleware
 // to serve from the production 'build' folder
 app.use(favicon(path.join(__dirname, 'build', 'favicon.ico')));
@@ -34,6 +34,7 @@ app.use('/api/users', require('./routes/api/users'));
 const ensureLoggedIn = require('./config/ensureLoggedIn');
 app.use('/api/items', ensureLoggedIn, require('./routes/api/items'));
 app.use('/api/orders', ensureLoggedIn, require('./routes/api/orders'));
+app.use('/api/addresses', ensureLoggedIn, require('./routes/api/address'));
 
 
 // The following "catch all" route (note the *) is necessary
