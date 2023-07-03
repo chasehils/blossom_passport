@@ -13,7 +13,8 @@ import ListAddressComponent from '../../components/ListAddress/ListAddress';
 import CreateAddressComponent from '../../components/CreateAddress/CreateAddress.jsx';
 // import UsersProfile from '../../components/UsersProfile/UsersProfile';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import FlowerList from '../../components/FlowerList/FlowerList';
+import AddressForm from '../../components/AddressForm/AddressForm'
+import AddressDetail from '../../components/AddressDetail/AddressDetail';
 
 
 
@@ -65,6 +66,8 @@ export default function App() {
             {/* <Route path="/flower-list" element={<FlowerList user={user} setUser={setUser} flowerItems={flowerItems} />}
             /> */}
             {/* <Route path="/user-profile" element={<UsersProfile />} /> */}
+            <Route path="/my_address" element={<AddressForm user={user} setUser={setUser} />} />
+            <Route path="/my_address/:addressId" element={<AddressDetail user={user} setUser={setUser} />} />
             <Route path="/orders/new" element={<NewOrderPage user={user} setUser={setUser} />} />
             <Route path="/orders" element={<OrderHistoryPage />} />
             <Route path="/:account"element={<MyAccount user={user} setUser={setUser} updateUserProfile={handleUpdateProfile} />} />

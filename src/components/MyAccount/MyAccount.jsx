@@ -108,6 +108,9 @@ export default function MyAccount(props) {
       <li>
         <Link to="/user-profile">User Profile</Link>
       </li>
+      <li>
+        <Link to="/my_address">New Address</Link>
+      </li>
     </ul>
   </div>
   );

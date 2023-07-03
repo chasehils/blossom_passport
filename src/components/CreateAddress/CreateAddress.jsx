@@ -101,7 +101,7 @@ class CreateAddressComponent extends Component {
           <div className="row">
             <div className="card col-md-6 offset-md-3 offset-md-3">
               <div className="card-body">
-                <form>
+                <form onSubmit>
                   <div className="form-group">
                     <label>Street:</label>
                     <input

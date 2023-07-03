@@ -35,6 +35,7 @@ const ensureLoggedIn = require('./config/ensureLoggedIn');
 app.use('/api/items', ensureLoggedIn, require('./routes/api/items'));
 app.use('/api/orders', ensureLoggedIn, require('./routes/api/orders'));
 app.use('/api/addresses', ensureLoggedIn, require('./routes/api/address'));
+app.use('/api/addresses', ensureLoggedIn, require('./routes/api/addressforms'))
 
 
 // The following "catch all" route (note the *) is necessary
