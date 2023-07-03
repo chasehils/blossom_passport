@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
-import AddressService from '../../utilities/AddressService';
+import {
+  createAddress,
+  deleteAddress,
+  getAddressById,
+  getAddresses,
+  updateAddress,
+} from '../../utilities/AddressService';
+
 
 class CreateAddressComponent extends Component {
   constructor(props) {
@@ -24,7 +31,7 @@ class CreateAddressComponent extends Component {
 
   componentDidMount() {
     if (this.state.id !== '_add') {
-      AddressService.getAddressById(this.state.id).then((res) => {
+      getAddressById(this.state.id).then((res) => {
         let address = res.data;
         this.setState({
           street: address.street,
@@ -35,6 +42,7 @@ class CreateAddressComponent extends Component {
       });
     }
   }
+  
 
   saveOrUpdateAddress(e) {
     e.preventDefault();

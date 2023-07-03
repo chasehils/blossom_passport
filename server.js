@@ -14,7 +14,7 @@ const app = express();
 app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
-
+app.use('/Flower_Pictures', express.static('src/Flower_Pictures'));
 // Configure both serve-favicon & static middleware
 // to serve from the production 'build' folder
 app.use(favicon(path.join(__dirname, 'build', 'favicon.ico')));

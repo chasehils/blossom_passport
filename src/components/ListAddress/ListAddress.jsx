@@ -1,66 +1,53 @@
-import React, { Component } from 'react';
-import AddressService from '../../utilities/AddressService';
+import React, { useEffect, useState } from 'react';
+import { getAddresses, deleteAddress } from '../../utilities/AddressService';
+import { useNavigate } from 'react-router-dom';
 
-class ListAddressComponent extends Component {
-  constructor(props) {
-    super(props);
+const ListAddressComponent = () => {
+  const [addresses, setAddresses] = useState([]);
+  const navigate = useNavigate();
 
-    this.state = {
-      addresses: [],
-    };
-
-    this.deleteAddress = this.deleteAddress.bind(this);
-    this.editAddress = this.editAddress.bind(this);
-    this.viewAddress = this.viewAddress.bind(this);
-    this.addAddress = this.addAddress.bind(this);
-  }
-
-  componentDidMount() {
-    AddressService.getAddresses()
+  useEffect(() => {
+    getAddresses()
       .then((res) => {
-        console.log(res.data); // Add this line to check the value
-        this.setState({ addresses: res.data });
+        console.log(res.data);
+        setAddresses(res.data);
       })
       .catch((error) => {
         console.log(error);
       });
-  }
+  }, []);
 
-  deleteAddress(id) {
-    AddressService.deleteAddress(id).then((res) => {
-      this.setState({
-        addresses: this.state.addresses.filter(
-          (address) => address.id !== id
-        ),
+  const handleDeleteAddress = (id) => {
+    deleteAddress(id)
+      .then((res) => {
+        setAddresses((prevAddresses) =>
+          prevAddresses.filter((address) => address.id !== id)
+        );
       });
-    });
-  }
+  };
 
-  editAddress(id) {
-    this.props.history.push(`/edit-address/${id}`);
-  }
+  const editAddress = (id) => {
+    navigate(`/addresses?edit=${id}`);
+  };
 
-  viewAddress(id) {
-    this.props.history.push(`/view-address/${id}`);
-  }
+  const viewAddress = (id) => {
+    navigate(`/addresses?view=${id}`);
+  };
 
-  addAddress() {
-    this.props.history.push('/add-address');
-  }
+  const addAddress = () => {
+    navigate('/add-address');
+  };
 
-  render() {
-    return (
-      <div>
-        <h2 className="text-center">Address List</h2>
-        <div className="row">
-          <button
-            className="btn btn-primary"
-            onClick={this.addAddress}
-          >
-            Add Address
-          </button>
-        </div>
-        <div className="row">
+  return (
+    <div>
+      <h2 className="text-center">Address List</h2>
+      <div className="row">
+        <button className="btn btn-primary" onClick={addAddress}>
+          Add Address
+        </button>
+      </div>
+      <div className="row">
+        {Array.isArray(addresses) && addresses.length > 0 ? (
           <table className="table table-striped table-bordered">
             <thead>
               <tr>
@@ -72,7 +59,7 @@ class ListAddressComponent extends Component {
               </tr>
             </thead>
             <tbody>
-              {this.state.addresses.map((address) => (
+              {addresses.map((address) => (
                 <tr key={address.id}>
                   <td>{address.street}</td>
                   <td>{address.city}</td>
@@ -80,20 +67,20 @@ class ListAddressComponent extends Component {
                   <td>{address.zip}</td>
                   <td>
                     <button
-                      onClick={() => this.editAddress(address.id)}
+                      onClick={() => editAddress(address.id)}
                       className="btn btn-info"
                     >
                       Update
                     </button>
                     <button
-                      onClick={() => this.deleteAddress(address.id)}
+                      onClick={() => handleDeleteAddress(address.id)}
                       className="btn btn-danger"
                       style={{ marginLeft: '10px' }}
                     >
                       Delete
                     </button>
                     <button
-                      onClick={() => this.viewAddress(address.id)}
+                      onClick={() => viewAddress(address.id)}
                       className="btn btn-info"
                       style={{ marginLeft: '10px' }}
                     >
@@ -104,10 +91,12 @@ class ListAddressComponent extends Component {
               ))}
             </tbody>
           </table>
-        </div>
+        ) : (
+          <div>No addresses found.</div>
+        )}
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default ListAddressComponent;
